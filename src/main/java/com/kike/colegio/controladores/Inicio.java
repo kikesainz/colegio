@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.utils.DBUtils;
 
 
 /**
@@ -50,13 +51,8 @@ public class Inicio extends HttpServlet {
 		List<Alumno> listaAlumnos = new ArrayList<>();
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			String dbURL = "jdbc:mysql://localhost:3306/colegio";
-			String username = "root";
-			String password = "1234";
-			Connection connection = DriverManager.getConnection(dbURL, username, password);
 			
+			Connection connection = DBUtils.DBConnection();
 			Statement st = connection.createStatement();
 			
 			ResultSet  rs = st.executeQuery("SELECT * FROM ALUMNOS");
@@ -71,7 +67,7 @@ public class Inicio extends HttpServlet {
 			request.setAttribute("lista", listaAlumnos);
 			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
 			d.forward(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch ( SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
