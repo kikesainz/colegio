@@ -5,20 +5,24 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class DBUtils {
 	
 	public static Connection DBConnection() {
 		
+		Context ctx = null;
 		Connection connection = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String dbURL = "jdbc:mysql://localhost:3306/colegio";
-			String username = "root";
-			String password = "1234";
-			connection = DriverManager.getConnection(dbURL, username, password);
+			ctx = new InitialContext();
+			DataSource ds = (DataSource) ctx.lookup("java:/comp/env/jdbc/ColegioDB");
+			connection = ds.getConnection();
 			
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (NamingException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
