@@ -3,13 +3,21 @@ package com.kike.colegio.controladores;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.kike.colegio.dtos.Alumno;
+
 
 /**
  * Servlet implementation class Inicio
@@ -18,6 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/inicio")
 public class Inicio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger logger = LoggerFactory.getLogger(Inicio.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,6 +51,18 @@ public class Inicio extends HttpServlet {
 			String username = "root";
 			String password = "1234";
 			Connection connection = DriverManager.getConnection(dbURL, username, password);
+			
+			Statement st = connection.createStatement();
+			
+			ResultSet  rs = st.executeQuery("SELECT * FROM ALUMNOS");
+			
+			while (rs.next()) {
+				
+				Alumno a = new Alumno(rs.getInt(1), rs.getString(2), "");
+				logger.debug(a.getNombre());
+				
+				
+			}
 
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
