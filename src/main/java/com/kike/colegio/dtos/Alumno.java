@@ -10,6 +10,17 @@ public class Alumno {
 	public Alumno() {
 		super();
 	}
+	
+	
+
+
+	public Alumno(Integer id, String nombre) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+
 
 
 	public Alumno(Integer id, String nombre, String municipio) {
