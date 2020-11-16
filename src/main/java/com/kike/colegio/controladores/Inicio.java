@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.kike.colegio.dtos.Alumno;
 import com.kike.colegio.utils.DBUtils;
+import com.kike.colegio.dao.AlumnoDAO;
 
 
 /**
@@ -48,32 +50,17 @@ public class Inicio extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Alumno> listaAlumnos = new ArrayList<>();
 		
-		try {
+		 	AlumnoDAO a = new AlumnoDAOImpl();
+		 	List<Alumno> listaAlumnos = new ArrayList<>();
+		 	listaAlumnos = a.obtenerTodosAlumnos();
 			
-			Connection connection = DBUtils.DBConnection();
-			Statement st = connection.createStatement();
-			
-			ResultSet  rs = st.executeQuery("SELECT * FROM ALUMNOS");
-			
-			while (rs.next()) {
-				
-				Alumno a = new Alumno(rs.getInt(1), rs.getString(2), "");
-				listaAlumnos.add(a);
-				
-				
-			}
+
 			request.setAttribute("lista", listaAlumnos);
 			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
 			d.forward(request, response);
-		} catch ( SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
