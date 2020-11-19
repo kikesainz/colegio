@@ -29,16 +29,16 @@ import com.kike.colegio.dao.AlumnoDAO;
  * Servlet implementation class Inicio
  */
 
-@WebServlet("/inicio")
-public class Inicio extends HttpServlet {
+@WebServlet("/listadoalumnos")
+public class ListadoAlumnosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static Logger logger = LoggerFactory.getLogger(Inicio.class);
+	private static Logger logger = LoggerFactory.getLogger(ListadoAlumnosController.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Inicio() {
+	public ListadoAlumnosController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -51,12 +51,7 @@ public class Inicio extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
-		 	AlumnoDAO a = new AlumnoDAOImpl();
-		 	List<Alumno> listaAlumnos = new ArrayList<>();
-		 	listaAlumnos = a.obtenerTodosAlumnos();
-			
 
-			request.setAttribute("lista", listaAlumnos);
 			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
 			d.forward(request, response);
 
@@ -67,8 +62,19 @@ public class Inicio extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	 	
+		String id = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+		
+		AlumnoDAO a = new AlumnoDAOImpl();
+	 	List<Alumno> listaAlumnos = new ArrayList<>();
+	 	
+	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
+		
+
+		request.setAttribute("lista", listaAlumnos);
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
+		d.forward(request, response);
 	}
 
 }
