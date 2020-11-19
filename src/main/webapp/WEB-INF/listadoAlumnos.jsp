@@ -32,12 +32,14 @@
 		<tr> 
 			<th> ID </th>
 			<th> NOMBRE </th>
+			<th> MUNICIPIO </th>
 		</tr>
 		
 		<c:forEach items="${lista}" var="alumno">
 			<tr> 
 				<td>${alumno.id} </td>
 				<td>${alumno.nombre} </td>
+				<td>${alumno.municipio} </td>
 			</tr>
 		
 		</c:forEach>
