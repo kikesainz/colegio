@@ -28,6 +28,10 @@
 		</form> 
 	</div>
 	
+<c:if test="${empty lista}">
+	<h2> No hay resultados que mostrar con esos filtros</h2>
+</c:if>
+<c:if test="${not empty lista}">
 	<table>
 		<tr> 
 			<th> ID </th>
@@ -45,6 +49,7 @@
 		</c:forEach>
 		
 	</table>
+</c:if>
 </div>
 
 </body>
