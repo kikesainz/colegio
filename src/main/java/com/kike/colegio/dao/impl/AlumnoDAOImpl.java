@@ -69,4 +69,37 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 		return listaAlumnos;
 	}
 
+	@Override
+	public Integer insertarAlumno(String id, String nombre, String idMunicipio) {
+		String sql = "INSERT INTO alumnos (id, nombre, id_municipio) VALUES (?, ?, ?)";
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		Integer resultado = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			ps.setString(2, nombre);
+			ps.setString(3, idMunicipio);
+			
+			resultado = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return resultado;
+	}
+
 }

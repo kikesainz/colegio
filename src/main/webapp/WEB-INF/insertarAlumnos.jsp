@@ -38,9 +38,13 @@
 		  
 		  <input type="submit" value="Enviar">
 		</form> 
+		
+
 	</div>
 	
-
+		<c:if test="${resultado == 1}" >
+   			<b>Alumno insertado correctamente</b>
+		</c:if>
 </div>
 
 

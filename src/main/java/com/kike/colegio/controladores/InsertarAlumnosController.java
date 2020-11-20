@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kike.colegio.dao.AlumnoDAO;
 import com.kike.colegio.dao.CombosDAO;
+import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 import com.kike.colegio.dao.impl.CombosDAOImpl;
 import com.kike.colegio.dtos.ComboDTO;
 
@@ -36,26 +38,39 @@ public class InsertarAlumnosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1-Recuperar de la BBDD todos los municipios y meterlos en una lista
 		
-		CombosDAO comboMunicipio = new CombosDAOImpl();
-		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
-		
-		//2-Pasar la lista a la vista
-		
-		request.setAttribute("comboMunicipios", listaMunicipios);
-		
-		
-		//3-Redirigir a la vista
+		recuperacionComboMunicipios(request);	
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
 		d.forward(request, response);
+	}
+
+	private void recuperacionComboMunicipios(HttpServletRequest request) {
+		CombosDAO comboMunicipio = new CombosDAOImpl();
+		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
+		request.setAttribute("comboMunicipios", listaMunicipios);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		 
+		// Recupero los datos del formulario
+		String id = request.getParameter("id");
+		String nombre = request.getParameter("nombre");
+		String municipios = request.getParameter("municipios");
+		
+		AlumnoDAO a = new AlumnoDAOImpl();		
+		Integer resultado = a.insertarAlumno(id, nombre, municipios);
+		
+		request.setAttribute("resultado", resultado);
+		
+		recuperacionComboMunicipios(request);
+		
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
+		d.forward(request, response);
+		
+		
 	}
 
 }
