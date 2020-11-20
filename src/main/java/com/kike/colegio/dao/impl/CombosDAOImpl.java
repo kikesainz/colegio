@@ -18,7 +18,7 @@ public class CombosDAOImpl implements CombosDAO{
 	@Override
 	public List<ComboDTO> comboMunicipios() {
 		
-		String sql = "SELECT * FROM municipios";
+		String sql = "SELECT * FROM municipios ORDER BY nombre";
 		List<ComboDTO> listaMunicipios = new ArrayList<>();
 		
 		try {
