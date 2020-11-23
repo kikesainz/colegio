@@ -15,6 +15,7 @@ import com.kike.colegio.dao.CombosDAO;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 import com.kike.colegio.dao.impl.CombosDAOImpl;
 import com.kike.colegio.dtos.ComboDTO;
+import com.kike.colegio.utils.ComboUtils;
 
 /**
  * Servlet implementation class InsertarAlumnosController
@@ -38,17 +39,13 @@ public class InsertarAlumnosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1-Recuperar de la BBDD todos los municipios y meterlos en una lista
 		
-		recuperacionComboMunicipios(request);	
+		ComboUtils.recuperacionComboMunicipios(request);	
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
 		d.forward(request, response);
 	}
 
-	private void recuperacionComboMunicipios(HttpServletRequest request) {
-		CombosDAO comboMunicipio = new CombosDAOImpl();
-		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
-		request.setAttribute("comboMunicipios", listaMunicipios);
-	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,7 +62,7 @@ public class InsertarAlumnosController extends HttpServlet {
 		
 		request.setAttribute("resultado", resultado);
 		
-		recuperacionComboMunicipios(request);
+		ComboUtils.recuperacionComboMunicipios(request);
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
 		d.forward(request, response);
