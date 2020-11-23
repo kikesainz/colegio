@@ -5,6 +5,7 @@ public class Alumno {
 	private Integer id;
 	private String nombre;
 	private String municipio;
+	private Integer idMunicipio;
 	
 	
 	public Alumno() {
@@ -29,6 +30,20 @@ public class Alumno {
 		this.nombre = nombre;
 		this.municipio = municipio;
 	}
+	
+
+
+
+
+	public Alumno(Integer id, String nombre, String municipio, Integer idMunicipio) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.municipio = municipio;
+		this.idMunicipio = idMunicipio;
+	}
+
+
 
 
 	public Integer getId() {
@@ -58,6 +73,20 @@ public class Alumno {
 
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
+	}
+
+
+
+
+	public Integer getIdMunicipio() {
+		return idMunicipio;
+	}
+
+
+
+
+	public void setIdMunicipio(Integer idMunicipio) {
+		this.idMunicipio = idMunicipio;
 	}
 	
 	

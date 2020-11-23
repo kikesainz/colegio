@@ -40,7 +40,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	@Override
 	public List<Alumno> obtenerAlumnosporIdyNombre(String id, String nombre) {
 	//	String sql = "SELECT * FROM alumnos WHERE id LIKE ? AND nombre LIKE ?";
-		String sql = "SELECT a.id, a.nombre, m.nombre " +
+		String sql = "SELECT a.id, a.nombre, m.nombre, m.id_municipio " +
 		"FROM alumnos a, municipios m " +
 		"WHERE  a.id_municipio = m.id_municipio "+
 		"AND a.id LIKE ? AND a.nombre LIKE ?";
@@ -59,7 +59,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 			
 			while(alumnoResultSet.next()) {
 				Alumno a = new Alumno (alumnoResultSet.getInt(1), alumnoResultSet.getString(2), 
-										alumnoResultSet.getString(3));
+										alumnoResultSet.getString(3), alumnoResultSet.getInt(4));
 				listaAlumnos.add(a);
 			}
 		} catch (SQLException e) {
