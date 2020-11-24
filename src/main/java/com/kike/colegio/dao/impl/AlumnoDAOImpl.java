@@ -102,4 +102,40 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 		return resultado;
 	}
 
+	@Override
+	public Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio) {
+		String sql = "UPDATE alumnos SET id= ?, nombre = ? ,id_municipio = ? WHERE id = ?";
+		
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		Integer resultado = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			
+			ps.setString(1, idNew);
+			ps.setString(2, nombre);
+			ps.setString(3, idMunicipio);
+			ps.setString(4, idOld);
+			
+			resultado = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return resultado;
+	}
+
 }
