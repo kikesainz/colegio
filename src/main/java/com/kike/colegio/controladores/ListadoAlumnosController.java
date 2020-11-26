@@ -52,7 +52,7 @@ public class ListadoAlumnosController extends HttpServlet {
 		
 		
 
-			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
+			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
 			d.forward(request, response);
 
 	}
@@ -73,7 +73,7 @@ public class ListadoAlumnosController extends HttpServlet {
 		
 
 		request.setAttribute("lista", listaAlumnos);
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/listadoAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
 		d.forward(request, response);
 	}
 

@@ -35,7 +35,7 @@ public class FormularioActualizarAlumnosController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/actualizarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
 		d.forward(request, response);
 		}
 
@@ -58,7 +58,7 @@ public class FormularioActualizarAlumnosController extends HttpServlet {
 		request.setAttribute("lista", listaAlumnos);
 		
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/actualizarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
 		d.forward(request, response);
 	}
 

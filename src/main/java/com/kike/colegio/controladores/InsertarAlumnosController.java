@@ -41,7 +41,7 @@ public class InsertarAlumnosController extends HttpServlet {
 		
 		ComboUtils.recuperacionComboMunicipios(request);	
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/insertarAlumnos.jsp");
 		d.forward(request, response);
 	}
 
@@ -64,7 +64,7 @@ public class InsertarAlumnosController extends HttpServlet {
 		
 		ComboUtils.recuperacionComboMunicipios(request);
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/insertarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/insertarAlumnos.jsp");
 		d.forward(request, response);
 		
 		

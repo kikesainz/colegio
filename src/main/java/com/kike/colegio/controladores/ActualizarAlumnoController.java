@@ -50,7 +50,7 @@ public class ActualizarAlumnoController extends HttpServlet {
 		AlumnoDAO a = new AlumnoDAOImpl();
 		a.actualizarAlumno(idOld, idNew, nombre, idMunicipio);
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/actualizarAlumnos.jsp");
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
 		
 		d.forward(request, response);
 		
