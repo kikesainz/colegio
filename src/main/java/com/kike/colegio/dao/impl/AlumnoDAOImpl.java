@@ -8,12 +8,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.kike.colegio.controladores.ListadoAlumnosController;
 import com.kike.colegio.dao.AlumnoDAO;
 import com.kike.colegio.dtos.Alumno;
 import com.kike.colegio.utils.DBUtils;
 
 public class AlumnoDAOImpl implements AlumnoDAO {
 
+	private static Logger logger = LoggerFactory.getLogger(AlumnoDAOImpl.class);
 	@Override
 	public List<Alumno> obtenerTodosAlumnos() {
 
@@ -40,6 +45,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	@Override
 	public List<Alumno> obtenerAlumnosporIdyNombre(String id, String nombre) {
 		// String sql = "SELECT * FROM alumnos WHERE id LIKE ? AND nombre LIKE ?";
+		logger.info("Inicio método obtenerAlumnosporIdyNombre");
 		String sql = "SELECT a.id, a.nombre, m.nombre, m.id_municipio " + "FROM alumnos a, municipios m "
 				+ "WHERE  a.id_municipio = m.id_municipio " + "AND a.id LIKE ? AND a.nombre LIKE ?";
 
@@ -52,6 +58,8 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 
 			ps.setString(1, "%" + id + "%");
 			ps.setString(2, "%" + nombre + "%");
+			
+			logger.info("Query a ejecutar" + ps);
 
 			alumnoResultSet = ps.executeQuery();
 
