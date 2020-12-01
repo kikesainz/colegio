@@ -108,4 +108,31 @@ public class AsignaturaDAOImpl implements AsignaturaDAO{
 		return resultado;
 	}
 
+	@Override
+	public Integer eliminarAsignatura(String id) {
+		String sql = "DELETE FROM asignaturas WHERE id = ?;";
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		Integer resultado = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, id);
+			
+			resultado = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultado;
+	}
 }
