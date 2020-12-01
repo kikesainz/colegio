@@ -74,7 +74,7 @@ public class ListadoAsignaturasController extends HttpServlet {
 		AsignaturaDAO a = new AsignaturaDAOImpl();
 	 	List<AsignaturaDTO> listaAsignaturas = new ArrayList<>();
 	 	
-	 	listaAsignaturas = a.obtenerAsignaturasporIdyNombre(id, nombre, curso, tasa);
+	 	listaAsignaturas = a.obtenerAsignaturaPorIdNombreCursoTasa(id, nombre, curso, tasa);
 		
 
 		request.setAttribute("lista", listaAsignaturas);

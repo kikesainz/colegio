@@ -8,8 +8,8 @@ import com.kike.colegio.dtos.AsignaturaDTO;
 public interface AsignaturaDAO {
 	
 //	List<Alumno> obtenerTodosAlumnos();
-	List<AsignaturaDTO> obtenerAsignaturasporIdyNombre(String id, String nombre, String curso , String tasa);
+	List<AsignaturaDTO> obtenerAsignaturaPorIdNombreCursoTasa(String id, String nombre, String curso , String tasa);
 	Integer insertarAsignatura(String id, String nombre, String curso, String tasa);
-//	Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio);
+	Integer actualizarAsignatura(String idOld, String idNew, String nombre, String curso, String tasa);
 //	Integer borrarAlumno (String id);
 }

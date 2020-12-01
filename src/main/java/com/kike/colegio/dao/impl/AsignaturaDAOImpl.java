@@ -15,7 +15,7 @@ import com.kike.colegio.utils.DBUtils;
 public class AsignaturaDAOImpl implements AsignaturaDAO{
 
 	@Override
-	public List<AsignaturaDTO> obtenerAsignaturasporIdyNombre(String id, String nombre, String curso, String tasa) {
+	public List<AsignaturaDTO> obtenerAsignaturaPorIdNombreCursoTasa(String id, String nombre, String curso, String tasa) {
 		String sql = "SELECT * FROM asignaturas WHERE id LIKE ? AND nombre LIKE ?  AND curso LIKE ? AND tasa LIKE ?";
 		ResultSet asignaturasResultSet = null;
 		Connection connection = DBUtils.DBConnection();
@@ -74,6 +74,37 @@ public class AsignaturaDAOImpl implements AsignaturaDAO{
 
 		}
 
+		return resultado;
+	}
+	@Override
+	public Integer actualizarAsignatura(String idOld, String idNew, String nombre, String curso, String tasa) {
+		String sql = "UPDATE asignaturas SET id=?, nombre=?, curso=?, tasa=?  WHERE id = ?;";
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		Integer resultado = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, idNew);
+			ps.setString(2, nombre);
+			ps.setString(3, curso);
+			ps.setString(4, tasa);
+			ps.setString(5, idOld);
+			
+			resultado = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return resultado;
 	}
 
