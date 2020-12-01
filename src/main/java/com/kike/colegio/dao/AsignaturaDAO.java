@@ -9,7 +9,7 @@ public interface AsignaturaDAO {
 	
 //	List<Alumno> obtenerTodosAlumnos();
 	List<AsignaturaDTO> obtenerAsignaturasporIdyNombre(String id, String nombre, String curso , String tasa);
-//	Integer insertarAlumno(String id, String nombre, String idMunicipio);
+	Integer insertarAsignatura(String id, String nombre, String curso, String tasa);
 //	Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio);
 //	Integer borrarAlumno (String id);
 }
