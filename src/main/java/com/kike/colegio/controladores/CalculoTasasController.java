@@ -38,14 +38,15 @@ public class CalculoTasasController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nombre = request.getParameter("format");
+		String alumnos = request.getParameter("alumnos");
+		String asignaturas = request.getParameter("asignaturas");
+		String fecha = request.getParameter("fecha");
 		
 		Integer tasa = 10;
 
 		PrintWriter  out = response.getWriter();
 		out.println(tasa); //Funciona mejor con json
-//		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
-//		d.forward(request, response);
+
 	}
 
 }

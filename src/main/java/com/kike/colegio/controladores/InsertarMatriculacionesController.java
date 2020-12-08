@@ -39,7 +39,8 @@ public class InsertarMatriculacionesController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1-Recuperar de la BBDD todos los municipios y meterlos en una lista
 		
-		ComboUtils.recuperacionComboMunicipios(request);	
+		ComboUtils.recuperarComboAlumnos(request);
+		ComboUtils.recuperarComboAsignaturas(request);
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/matriculaciones/insertarMatriculaciones.jsp");
 		d.forward(request, response);
@@ -52,20 +53,7 @@ public class InsertarMatriculacionesController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
-		// Recupero los datos del formulario
-		String id = request.getParameter("id");
-		String nombre = request.getParameter("nombre");
-		String municipios = request.getParameter("municipios");
-		
-		AlumnoDAO a = new AlumnoDAOImpl();		
-		Integer resultado = a.insertarAlumno(id, nombre, municipios);
-		
-		request.setAttribute("resultado", resultado);
-		
-		ComboUtils.recuperacionComboMunicipios(request);
-		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/insertarAlumnos.jsp");
-		d.forward(request, response);
+		this.doGet(request, response);
 		
 		
 	}

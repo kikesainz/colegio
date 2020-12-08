@@ -11,22 +11,24 @@
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	 <script>
 	 $(document).ready(function(){
-	 $("#formulario").keyup(function() { //Cada vez que se levante la tecla del formulario
-		var kaka = true;
-		if($('#id').val() && $('#nombre').val()){ //comprueba que estos campos no estén vacíos
-		   $.ajax({
-			  type: "POST",
-		      url: 'http://localhost:8080/colegio/tasa',
-		      data: {
-		         format: $("#nombre").val()
-		      },
-		      success: function(data) {
-		         $('#tasa').val(data)
-		      }
-		   });
-	 }
+		$(document).on('change','#alumnos, #asignaturas', function(){
+			$.ajax({
+					  type: "POST",
+					  url: 'http://localhost:8080/colegio/tasa',
+					  data: {
+						 alumnos: $("#alumnos").val(),
+						 asignaturas: $("#asignaturas").val(),
+						 fecha: $("fecha").val()
+					  },
+					  success: function(data) {
+						 $('#tasa').val(data)
+					  }
+			});
 		});
 	 });
+	 
+	 
+
 	 </script>
 </head>
 <body>
@@ -41,24 +43,27 @@
 	<div class="form" id="formulario"> 
 		<form action="http://localhost:8080/colegio/insertarmatriculaciones" method="post" id="formulario">
 		 
-		  <label for="id">DNI Alumno</label>
-		  <input type="text" id="id" name="id">
-		  <label for="nombre">Nombre Alumno</label>
-		  <input type="text" id="nombre" name="nombre"><br>
+		  		<label for="alumnos">Alumnos</label> 								
+				<select name="alumnos" form="formulario" id="alumnos">		
+					<c:forEach items="${listaAlumnos}" var="alumno">			
+						<option value="${alumno.id}">${alumno.id}-${alumno.descripcion} </option>
+					</c:forEach>
+				</select>
+				
+				<label for="asignaturas">Asignaturas</label> 								
+				<select name="asignaturas" form="formulario" id="asignaturas">		
+					<c:forEach items="${listaAsignaturas}" var="asignatura">			
+						<option value="${asignatura.id}">${asignatura.id}-${asignatura.descripcion} </option>
+					</c:forEach>
+				</select> <br>
+				
+				<label for="tasa">Tasa</label> 	
+				<input readonly type="text" id="tasa" name="tasa"><br>
+				
+				<label for="fecha">Fecha</label>
+				<input type="date" name="fecha" id="fecha"/> <br>
 		  
-		  <select name="municipios" id="municipios" form="formulario">
-		  		<c:forEach items="${comboMunicipios}" var="municipio">
-		  		
-		  			<option value="${municipio.id}"> ${municipio.descripcion}</option>
-		  		
-		  		
-		  		</c:forEach>
-		  
-		  </select>
-		  
-		  		  <input type="text" id="tasa" name="tasa"><br>
-		  
-		  <input type="submit" value="Enviar">
+		  		<input type="submit" value="Insertar">
 		</form> 
 		
 
