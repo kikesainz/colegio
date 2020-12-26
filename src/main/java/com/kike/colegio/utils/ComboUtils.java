@@ -16,4 +16,15 @@ public class ComboUtils {
 		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
 		request.setAttribute("comboMunicipios", listaMunicipios);
 	}
+	
+	
+	public static void recuperarComboAlumnos(HttpServletRequest request) {	
+		CombosDAO c = new CombosDAOImpl();		
+		request.setAttribute("listaAlumnos", c.comboAlumnos());
+	}
+	
+	public static void recuperarComboAsignaturas(HttpServletRequest request) {		
+		CombosDAO c = new CombosDAOImpl();		
+		request.setAttribute("listaAsignaturas", c.comboAsignaturas());
+	}
 }
