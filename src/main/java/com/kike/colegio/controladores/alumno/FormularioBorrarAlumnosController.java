@@ -1,6 +1,8 @@
-package com.kike.colegio.controladores;
+package com.kike.colegio.controladores.alumno;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,19 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kike.colegio.dao.AlumnoDAO;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
+import com.kike.colegio.dtos.Alumno;
 
 /**
- * Servlet implementation class ActualizarAlumno
+ * Servlet implementation class FormularioBorrarAlumnoController
  */
-
-@WebServlet("/actualizaralumno")
-public class ActualizarAlumnoController extends HttpServlet {
+@WebServlet("/formularioborraralumnos")
+public class FormularioBorrarAlumnosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ActualizarAlumnoController() {
+    public FormularioBorrarAlumnosController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,28 +34,28 @@ public class ActualizarAlumnoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
+		d.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idOld = request.getParameter("idOld");
-		String idNew = request.getParameter("id");
+		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
-		String idMunicipio = request.getParameter("municipios");
 		
-
-
 		AlumnoDAO a = new AlumnoDAOImpl();
-		a.actualizarAlumno(idOld, idNew, nombre, idMunicipio);
+	 	List<Alumno> listaAlumnos = new ArrayList<>();
+	 	
+	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
+
+		request.setAttribute("lista", listaAlumnos);
 		
+		
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
 		d.forward(request, response);
-		
 	}
 
 }

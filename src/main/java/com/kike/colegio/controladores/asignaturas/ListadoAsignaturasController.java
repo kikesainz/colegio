@@ -1,4 +1,4 @@
-package com.kike.colegio.controladores;
+package com.kike.colegio.controladores.asignaturas;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
+import com.kike.colegio.dao.impl.AsignaturaDAOImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,24 +22,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AsignaturaDTO;
 import com.kike.colegio.utils.DBUtils;
 import com.kike.colegio.dao.AlumnoDAO;
+import com.kike.colegio.dao.AsignaturaDAO;
 
 
 /**
  * Servlet implementation class Inicio
  */
 
-@WebServlet("/listadoalumnos")
-public class ListadoAlumnosController extends HttpServlet {
+@WebServlet("/listadoasignaturas")
+public class ListadoAsignaturasController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static Logger logger = LoggerFactory.getLogger(ListadoAlumnosController.class);
+	private static Logger logger = LoggerFactory.getLogger(ListadoAsignaturasController.class);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ListadoAlumnosController() {
+	public ListadoAsignaturasController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -52,7 +55,7 @@ public class ListadoAlumnosController extends HttpServlet {
 		
 		
 
-			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
+			RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
 			d.forward(request, response);
 
 	}
@@ -65,15 +68,17 @@ public class ListadoAlumnosController extends HttpServlet {
 	 	
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
+		String curso = request.getParameter("curso");
+		String tasa = request.getParameter("tasa");
 		
-		AlumnoDAO a = new AlumnoDAOImpl();
-	 	List<Alumno> listaAlumnos = new ArrayList<>();
+		AsignaturaDAO a = new AsignaturaDAOImpl();
+	 	List<AsignaturaDTO> listaAsignaturas = new ArrayList<>();
 	 	
-	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
+	 	listaAsignaturas = a.obtenerAsignaturaPorIdNombreCursoTasa(id, nombre, curso, tasa);
 		
 
-		request.setAttribute("lista", listaAlumnos);
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/listadoAlumnos.jsp");
+		request.setAttribute("lista", listaAsignaturas);
+		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/asignaturas/listadoAsignaturas.jsp");
 		d.forward(request, response);
 	}
 

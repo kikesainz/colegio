@@ -1,4 +1,4 @@
-package com.kike.colegio.controladores;
+package com.kike.colegio.controladores.asignaturas;
 
 import java.io.IOException;
 import java.util.List;
