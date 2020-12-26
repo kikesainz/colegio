@@ -1,4 +1,4 @@
-package com.kike.colegio.controladores.alumnos;
+package com.kike.colegio.controladores.alumno;
 
 import java.io.IOException;
 import java.sql.Connection;
