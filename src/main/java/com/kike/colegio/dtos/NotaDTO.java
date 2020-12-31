@@ -1,4 +1,4 @@
-package com.kike.colegio.dto;
+package com.kike.colegio.dtos;
 
 public class NotaDTO {
 	

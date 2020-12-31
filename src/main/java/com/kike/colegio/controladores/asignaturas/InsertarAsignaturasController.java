@@ -20,7 +20,7 @@ import com.kike.colegio.dtos.ComboDTO;
 import com.kike.colegio.utils.ComboUtils;
 
 /**
- * Servlet implementation class InsertarAlumnosController
+ * Servlet Implation class InsertarAlumnosController
  */
 
 @WebServlet("/insertarasignaturas")

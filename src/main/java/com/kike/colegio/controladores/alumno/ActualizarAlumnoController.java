@@ -13,7 +13,7 @@ import com.kike.colegio.dao.AlumnoDAO;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 
 /**
- * Servlet implementation class ActualizarAlumno
+ * Servlet Implation class ActualizarAlumno
  */
 
 @WebServlet("/actualizaralumno")

@@ -13,7 +13,7 @@ import com.kike.colegio.dao.NotaDAO;
 import com.kike.colegio.dao.impl.NotaDAOImpl;
 
 /**
- * Servlet implementation class FormularioEliminarNotaController
+ * Servlet Implation class FormularioEliminarNotaController
  */
 @WebServlet("/formularioborrarnota")
 public class FormularioEliminarNotaController extends HttpServlet {

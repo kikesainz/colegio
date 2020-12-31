@@ -1,6 +1,6 @@
 package com.kike.colegio.dtos;
 
-public class Alumno {
+public class AlumnoDTO {
 	
 	private Integer id;
 	private String nombre;
@@ -8,14 +8,14 @@ public class Alumno {
 	private Integer idMunicipio;
 	
 	
-	public Alumno() {
+	public AlumnoDTO() {
 		super();
 	}
 	
 	
 
 
-	public Alumno(Integer id, String nombre) {
+	public AlumnoDTO(Integer id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -24,7 +24,7 @@ public class Alumno {
 
 
 
-	public Alumno(Integer id, String nombre, String municipio) {
+	public AlumnoDTO(Integer id, String nombre, String municipio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -35,7 +35,7 @@ public class Alumno {
 
 
 
-	public Alumno(Integer id, String nombre, String municipio, Integer idMunicipio) {
+	public AlumnoDTO(Integer id, String nombre, String municipio, Integer idMunicipio) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

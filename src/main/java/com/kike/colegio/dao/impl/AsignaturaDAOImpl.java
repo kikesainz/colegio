@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kike.colegio.dao.AsignaturaDAO;
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 import com.kike.colegio.dtos.AsignaturaDTO;
 import com.kike.colegio.utils.DBUtils;
 
@@ -134,5 +134,69 @@ public class AsignaturaDAOImpl implements AsignaturaDAO{
 		}
 		
 		return resultado;
+	}
+	
+	@Override
+	public int obtenerNumeroAsignaturasMatriculadas(String idAlumno) {
+		
+		String sql = "SELECT count(*) FROM matriculaciones WHERE id_alumno = ?;";
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		int numAsigMatriculadas = 0;
+		ResultSet rs = null;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, idAlumno);					
+			
+			rs = ps.executeQuery();
+			rs.next();
+			numAsigMatriculadas = rs.getInt(1);			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return numAsigMatriculadas;
+		
+	}
+	
+	public double obtenerTasaAsignatura(String idAsignatura) {
+		String sql = "SELECT tasa FROM asignaturas WHERE id LIKE ?";
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		double tasa = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, idAsignatura);				
+			
+			rs = ps.executeQuery();
+			rs.next();
+			tasa = rs.getInt(1);
+						
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return tasa;
 	}
 }

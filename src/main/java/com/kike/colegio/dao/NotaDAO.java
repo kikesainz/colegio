@@ -2,7 +2,7 @@ package com.kike.colegio.dao;
 
 import java.util.List;
 
-import com.kike.colegio.dto.NotaDTO;
+import com.kike.colegio.dtos.NotaDTO;
 
 
 public interface NotaDAO {

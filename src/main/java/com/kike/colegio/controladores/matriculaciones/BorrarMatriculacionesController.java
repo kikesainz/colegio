@@ -1,4 +1,4 @@
-package com.kike.colegio.controladores.alumno;
+package com.kike.colegio.controladores.matriculaciones;
 
 import java.io.IOException;
 
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kike.colegio.dao.AlumnoDAO;
-import com.kike.colegio.dao.impl.AlumnoDAOImpl;
+import com.kike.colegio.dao.MatriculacionDAO;
+import com.kike.colegio.dao.impl.MatriculacionDAOImpl;
 
 /**
- * Servlet Implation class BorrarAlumno
+ * Servlet Implation class BorrarMatriculacionesController
  */
-
-@WebServlet("/borraralumno")
-public class BorrarAlumnoController extends HttpServlet {
+@WebServlet("/borrarmatriculaciones")
+public class BorrarMatriculacionesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrarAlumnoController() {
+    public BorrarMatriculacionesController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +31,25 @@ public class BorrarAlumnoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher d = request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/vistas/matriculaciones/borrarMatriculaciones.jsp");
+		d.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String idMatricula = request.getParameter("idMatricula");
 		
-		AlumnoDAO a = new AlumnoDAOImpl();
+		MatriculacionDAO m = new MatriculacionDAOImpl();
 		
-		a.borrarAlumno(id);
+		Integer resultado = m.borrarMatriculacion(idMatricula);
 		
-		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/borrarAlumnos.jsp");
+		request.setAttribute("resultado", resultado);
+		
+		RequestDispatcher d = request.getServletContext().getRequestDispatcher("/WEB-INF/jsp/vistas/matriculaciones/borrarMatriculaciones.jsp");
 		d.forward(request, response);
+		
 	}
 
 }

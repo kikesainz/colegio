@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kike.colegio.dao.CombosDAO;
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 import com.kike.colegio.dtos.ComboDTO;
 import com.kike.colegio.utils.DBUtils;
 

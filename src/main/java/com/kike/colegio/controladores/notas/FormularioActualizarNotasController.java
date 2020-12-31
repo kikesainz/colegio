@@ -14,7 +14,7 @@ import com.kike.colegio.dao.impl.NotaDAOImpl;
 import com.kike.colegio.utils.ComboUtils;
 
 /**
- * Servlet implementation class FormularioActualizarNotasController
+ * Servlet Implation class FormularioActualizarNotasController
  */
 @WebServlet("/formularioactualizarnota")
 public class FormularioActualizarNotasController extends HttpServlet {

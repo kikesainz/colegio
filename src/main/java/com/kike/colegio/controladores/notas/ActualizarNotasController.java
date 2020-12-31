@@ -13,7 +13,7 @@ import com.kike.colegio.dao.NotaDAO;
 import com.kike.colegio.dao.impl.NotaDAOImpl;
 
 /**
- * Servlet implementation class ActualizarNotasController
+ * Servlet Implation class ActualizarNotasController
  */
 @WebServlet("/actualizarnota")
 public class ActualizarNotasController extends HttpServlet {

@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kike.colegio.dao.AlumnoDAO;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 
 /**
- * Servlet implementation class FormularioBorrarAlumnoController
+ * Servlet Implation class FormularioBorrarAlumnoController
  */
 @WebServlet("/formularioborraralumnos")
 public class FormularioBorrarAlumnosController extends HttpServlet {
@@ -46,7 +46,7 @@ public class FormularioBorrarAlumnosController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		
 		AlumnoDAO a = new AlumnoDAOImpl();
-	 	List<Alumno> listaAlumnos = new ArrayList<>();
+	 	List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 	 	
 	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
 		

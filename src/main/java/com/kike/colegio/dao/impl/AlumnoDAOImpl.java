@@ -13,16 +13,16 @@ import org.slf4j.LoggerFactory;
 
 
 import com.kike.colegio.dao.AlumnoDAO;
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 import com.kike.colegio.utils.DBUtils;
 
 public class AlumnoDAOImpl implements AlumnoDAO {
 
 	private static Logger logger = LoggerFactory.getLogger(AlumnoDAOImpl.class);
 	@Override
-	public List<Alumno> obtenerTodosAlumnos() {
+	public List<AlumnoDTO> obtenerTodosAlumnos() {
 
-		List<Alumno> listaAlumnos = new ArrayList<>();
+		List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 
 		try {
 			Connection connection = DBUtils.DBConnection();
@@ -30,7 +30,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 			ResultSet rs = st.executeQuery("SELECT * FROM ALUMNOS");
 
 			while (rs.next()) {
-				Alumno a = new Alumno(rs.getInt(1), rs.getString(2), "");
+				AlumnoDTO a = new AlumnoDTO(rs.getInt(1), rs.getString(2), "");
 				listaAlumnos.add(a);
 			}
 
@@ -43,7 +43,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	}
 
 	@Override
-	public List<Alumno> obtenerAlumnosporIdyNombre(String id, String nombre) {
+	public List<AlumnoDTO> obtenerAlumnosporIdyNombre(String id, String nombre) {
 		// String sql = "SELECT * FROM alumnos WHERE id LIKE ? AND nombre LIKE ?";
 		logger.info("Inicio método obtenerAlumnosporIdyNombre");
 		String sql = "SELECT a.id, a.nombre, m.nombre, m.id_municipio " + "FROM alumnos a, municipios m "
@@ -51,7 +51,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 
 		ResultSet alumnoResultSet = null;
 		Connection connection = DBUtils.DBConnection();
-		List<Alumno> listaAlumnos = new ArrayList<>();
+		List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 
 		try {
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -64,7 +64,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 			alumnoResultSet = ps.executeQuery();
 
 			while (alumnoResultSet.next()) {
-				Alumno a = new Alumno(alumnoResultSet.getInt(1), alumnoResultSet.getString(2),
+				AlumnoDTO a = new AlumnoDTO(alumnoResultSet.getInt(1), alumnoResultSet.getString(2),
 						alumnoResultSet.getString(3), alumnoResultSet.getInt(4));
 				listaAlumnos.add(a);
 			}
@@ -173,6 +173,44 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 		}
 
 		return resultado;
+	}
+	
+	
+	@Override
+	public boolean esFamiliaNumerosa(String idAlumno) {
+		String sql = "SELECT familia_numerosa FROM alumnos WHERE id LIKE ?";
+		
+		Connection connection = DBUtils.DBConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int famNumerosa = 0;
+		
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setString(1, idAlumno);					
+			
+			rs = ps.executeQuery();
+			rs.next();
+			famNumerosa = rs.getInt(1);
+			
+			if(famNumerosa==1) {
+				return true;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				connection.close();
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+		
 	}
 
 }

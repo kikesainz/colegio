@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 import com.kike.colegio.utils.DBUtils;
 import com.kike.colegio.dao.AlumnoDAO;
 
 
 /**
- * Servlet implementation class Inicio
+ * Servlet Implation class Inicio
  */
 
 @WebServlet("/listadoalumnos")
@@ -67,7 +67,7 @@ public class ListadoAlumnosController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		
 		AlumnoDAO a = new AlumnoDAOImpl();
-	 	List<Alumno> listaAlumnos = new ArrayList<>();
+	 	List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 	 	
 	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
 		

@@ -15,7 +15,7 @@ import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 import com.kike.colegio.dao.impl.AsignaturaDAOImpl;
 
 /**
- * Servlet implementation class BorrarAsignaturaController
+ * Servlet Implation class BorrarAsignaturaController
  */
 @WebServlet("/borrarasignatura")
 public class BorrarAsignaturaController extends HttpServlet {

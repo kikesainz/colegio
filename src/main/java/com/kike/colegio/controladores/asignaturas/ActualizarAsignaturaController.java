@@ -15,7 +15,7 @@ import com.kike.colegio.dao.impl.AlumnoDAOImpl;
 import com.kike.colegio.dao.impl.AsignaturaDAOImpl;
 
 /**
- * Servlet implementation class ActualizarAsignaturaController
+ * Servlet Implation class ActualizarAsignaturaController
  */
 @WebServlet("/actualizarasignatura")
 public class ActualizarAsignaturaController extends HttpServlet {

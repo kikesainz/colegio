@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.kike.colegio.dtos.Alumno;
+import com.kike.colegio.dtos.AlumnoDTO;
 import com.kike.colegio.dtos.AsignaturaDTO;
 import com.kike.colegio.utils.DBUtils;
 import com.kike.colegio.dao.AlumnoDAO;
@@ -29,7 +29,7 @@ import com.kike.colegio.dao.AsignaturaDAO;
 
 
 /**
- * Servlet implementation class Inicio
+ * Servlet Implation class Inicio
  */
 
 @WebServlet("/listadoasignaturas")

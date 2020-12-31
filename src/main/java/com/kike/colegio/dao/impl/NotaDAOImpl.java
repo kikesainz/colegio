@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.kike.colegio.dao.NotaDAO;
-import com.kike.colegio.dto.NotaDTO;
+import com.kike.colegio.dtos.NotaDTO;
 import com.kike.colegio.utils.DBUtils;
 
 public class NotaDAOImpl implements NotaDAO {
