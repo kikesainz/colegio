@@ -46,7 +46,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	public List<AlumnoDTO> obtenerAlumnosporIdyNombre(String id, String nombre) {
 		// String sql = "SELECT * FROM alumnos WHERE id LIKE ? AND nombre LIKE ?";
 		logger.info("Inicio método obtenerAlumnosporIdyNombre");
-		String sql = "SELECT a.id, a.nombre, m.nombre, m.id_municipio " + "FROM alumnos a, municipios m "
+		String sql = "SELECT a.id, a.nombre, m.nombre, m.id_municipio, a.familia_numerosa " + "FROM alumnos a, municipios m "
 				+ "WHERE  a.id_municipio = m.id_municipio " + "AND a.id LIKE ? AND a.nombre LIKE ?";
 
 		ResultSet alumnoResultSet = null;
@@ -65,7 +65,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 
 			while (alumnoResultSet.next()) {
 				AlumnoDTO a = new AlumnoDTO(alumnoResultSet.getInt(1), alumnoResultSet.getString(2),
-						alumnoResultSet.getString(3), alumnoResultSet.getInt(4));
+						alumnoResultSet.getString(3), alumnoResultSet.getInt(4), alumnoResultSet.getInt(5));
 				listaAlumnos.add(a);
 			}
 		} catch (SQLException e) {
@@ -76,11 +76,14 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	}
 
 	@Override
-	public Integer insertarAlumno(String id, String nombre, String idMunicipio) {
-		String sql = "INSERT INTO alumnos (id, nombre, id_municipio) VALUES (?, ?, ?)";
+	public Integer insertarAlumno(String id, String nombre, String idMunicipio, String famNumerosa) {
+		String sql = "INSERT INTO alumnos (id, nombre, id_municipio, familia_numerosa) VALUES (?, ?, ?, ?)";
 		Connection connection = DBUtils.DBConnection();
 		PreparedStatement ps = null;
 		Integer resultado = null;
+		
+		
+		if (famNumerosa == null) famNumerosa = "0";
 
 		try {
 			ps = connection.prepareStatement(sql);
@@ -88,6 +91,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 			ps.setString(1, id);
 			ps.setString(2, nombre);
 			ps.setString(3, idMunicipio);
+			ps.setString(4, famNumerosa);
 
 			resultado = ps.executeUpdate();
 
@@ -109,21 +113,25 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	}
 
 	@Override
-	public Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio) {
-		String sql = "UPDATE alumnos SET id= ?, nombre = ? ,id_municipio = ? WHERE id = ?";
+	public Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio , String famNumerosa) {
+		String sql = "UPDATE alumnos SET id= ?, nombre = ? ,id_municipio = ?, familia_numerosa = ? WHERE id = ?";
 
 		Connection connection = DBUtils.DBConnection();
 		PreparedStatement ps = null;
 		Integer resultado = null;
 
+	
+		
+		famNumerosa = (famNumerosa == null) ? "0" : "1";
+		
 		try {
 			ps = connection.prepareStatement(sql);
 
 			ps.setString(1, idNew);
 			ps.setString(2, nombre);
 			ps.setString(3, idMunicipio);
-			ps.setString(4, idOld);
-
+			ps.setString(4, famNumerosa);
+			ps.setString(5, idOld);
 			resultado = ps.executeUpdate();
 
 		} catch (SQLException e) {

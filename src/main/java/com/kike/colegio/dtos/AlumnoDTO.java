@@ -6,6 +6,7 @@ public class AlumnoDTO {
 	private String nombre;
 	private String municipio;
 	private Integer idMunicipio;
+	private Integer famNumerosa;
 	
 	
 	public AlumnoDTO() {
@@ -41,6 +42,18 @@ public class AlumnoDTO {
 		this.nombre = nombre;
 		this.municipio = municipio;
 		this.idMunicipio = idMunicipio;
+	}
+
+
+
+
+	public AlumnoDTO(Integer id, String nombre, String municipio, Integer idMunicipio, Integer famNumerosa) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.municipio = municipio;
+		this.idMunicipio = idMunicipio;
+		this.famNumerosa = famNumerosa;
 	}
 
 
@@ -87,6 +100,20 @@ public class AlumnoDTO {
 
 	public void setIdMunicipio(Integer idMunicipio) {
 		this.idMunicipio = idMunicipio;
+	}
+
+
+
+
+	public Integer getFamNumerosa() {
+		return famNumerosa;
+	}
+
+
+
+
+	public void setFamNumerosa(Integer famNumerosa) {
+		this.famNumerosa = famNumerosa;
 	}
 	
 	

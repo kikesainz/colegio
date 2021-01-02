@@ -35,6 +35,10 @@
 		  		</c:forEach>
 		  
 		  </select>
+		  <br>
+		  <label for="familiaNumerosa">Familia numerosa</label>
+		  <input type="checkbox" id="familiaNumerosa" name="familiaNumerosa" value="1">
+		  
 		  
 		  <input type="submit" value="Enviar">
 		</form> 

@@ -44,11 +44,12 @@ public class ActualizarAlumnoController extends HttpServlet {
 		String idNew = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		String idMunicipio = request.getParameter("municipios");
+		String famNumerosa = request.getParameter("familiaNumerosa");
 		
 
 
 		AlumnoDAO a = new AlumnoDAOImpl();
-		a.actualizarAlumno(idOld, idNew, nombre, idMunicipio);
+		a.actualizarAlumno(idOld, idNew, nombre, idMunicipio, famNumerosa);
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/actualizarAlumnos.jsp");
 		

@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 //import org.hibernate.Session;
@@ -33,18 +35,36 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 
 	@Override
 	public List<AlumnoDTO> obtenerTodosAlumnos() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = " FROM AlumnoEntity";
+		SessionFactory factory = DBUtils.creadorSessionFactory();
+		Session s = factory.getCurrentSession();
+		s.beginTransaction();
+
+		Query query = s.createQuery(hql);
+		List<AlumnoDTO> lista = query.getResultList();
+		
+		s.close(); //Cerramos la sesión
+		
+		return lista;
 	}
 
 	@Override
 	public List<AlumnoDTO> obtenerAlumnosporIdyNombre(String id, String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = " FROM AlumnoEntity a WHERE a.id ";
+		SessionFactory factory = DBUtils.creadorSessionFactory();
+		Session s = factory.getCurrentSession();
+		s.beginTransaction();
+
+		Query query = s.createQuery(hql);
+		List<AlumnoDTO> lista = query.getResultList();
+		
+		s.close(); //Cerramos la sesión
+		
+		return lista;
 	}
 
 	@Override
-	public Integer insertarAlumno(String id, String nombre, String idMunicipio) {
+	public Integer insertarAlumno(String id, String nombre, String idMunicipio, String famNumerosa) {
 		
 		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(id));
 		SessionFactory factory = DBUtils.creadorSessionFactory();
@@ -55,11 +75,13 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 		
 		
 		s.getTransaction().commit();
+		
+//		s.close();
 		return idPk;
 	}
 
 	@Override
-	public Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio) {
+	public Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio, String famNumerosa) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.kike.colegio.dao.impl.AlumnoDAOImpl;
+import com.kike.colegio.dao.implhib.AlumnoDAOImplHib;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -67,7 +68,9 @@ public class ListadoAlumnosController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		
 		AlumnoDAO a = new AlumnoDAOImpl();
-	 	List<AlumnoDTO> listaAlumnos = new ArrayList<>();
+		AlumnoDAO aHib = new AlumnoDAOImplHib();
+		List<AlumnoDTO> listaAlumnos = aHib.obtenerTodosAlumnos();
+//	 	List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 	 	
 	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
 		
