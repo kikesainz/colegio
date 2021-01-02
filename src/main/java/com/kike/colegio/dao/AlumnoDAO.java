@@ -6,9 +6,11 @@ import com.kike.colegio.dtos.AlumnoDTO;
 
 public interface AlumnoDAO {
 	
+	Integer insertarAlumno(String id, String nombre, String idMunicipio);
+	
+	
 	List<AlumnoDTO> obtenerTodosAlumnos();
 	List<AlumnoDTO> obtenerAlumnosporIdyNombre(String id, String nombre);
-	Integer insertarAlumno(String id, String nombre, String idMunicipio);
 	Integer actualizarAlumno(String idOld, String idNew, String nombre, String idMunicipio);
 	Integer borrarAlumno (String id);
 	public boolean esFamiliaNumerosa(String idAlumno);
