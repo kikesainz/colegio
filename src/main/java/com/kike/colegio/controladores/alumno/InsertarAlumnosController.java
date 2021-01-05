@@ -58,11 +58,13 @@ public class InsertarAlumnosController extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String idMunicipios = request.getParameter("municipios");
 		String famNumerosa = request.getParameter("familiaNumerosa");
+		
+		famNumerosa = (famNumerosa == null) ? "0" : "1";
 		// Implementación JDBC
-		AlumnoDAO a = new AlumnoDAOImpl();		
+//		AlumnoDAO a = new AlumnoDAOImpl();		
 		
 		//Implementación Hibernate
-//		AlumnoDAO a = new AlumnoDAOImplHib();	
+		AlumnoDAO a = new AlumnoDAOImplHib();	
 		
 		Integer resultado = a.insertarAlumno(id, nombre, idMunicipios, famNumerosa);
 		

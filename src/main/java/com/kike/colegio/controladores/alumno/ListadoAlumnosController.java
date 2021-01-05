@@ -67,12 +67,10 @@ public class ListadoAlumnosController extends HttpServlet {
 		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
 		
-		AlumnoDAO a = new AlumnoDAOImpl();
+	//	AlumnoDAO a = new AlumnoDAOImpl();
 		AlumnoDAO aHib = new AlumnoDAOImplHib();
-		List<AlumnoDTO> listaAlumnos = aHib.obtenerTodosAlumnos();
-//	 	List<AlumnoDTO> listaAlumnos = new ArrayList<>();
 	 	
-	 	listaAlumnos = a.obtenerAlumnosporIdyNombre(id, nombre);
+		List<AlumnoDTO>  listaAlumnos = aHib.obtenerAlumnosporIdyNombre(id, nombre);
 		
 
 		request.setAttribute("lista", listaAlumnos);

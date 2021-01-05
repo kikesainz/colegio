@@ -48,9 +48,9 @@
 						</c:forEach>
 						<option value="${alumno.idMunicipio}" selected>${alumno.municipio}</option>
 					</select>
-					
+					<br>
 					<label for="familiaNumerosa">Familia numerosa</label>
-									
+						
 					<c:if test="${alumno.famNumerosa == 1}">
 						<input type="checkbox" id="familiaNumerosa" name="familiaNumerosa" checked>
 					</c:if>
@@ -58,6 +58,8 @@
 					<c:if test="${alumno.famNumerosa == 0}">
 						<input type="checkbox" id="familiaNumerosa" name="familiaNumerosa" >
 					</c:if>
+					<br>
+					
 					<input type="submit" value="Modificar">
 				</form>
 			</div>

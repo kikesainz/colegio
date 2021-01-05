@@ -122,7 +122,7 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 
 	
 		
-		famNumerosa = (famNumerosa == null) ? "0" : "1";
+
 		
 		try {
 			ps = connection.prepareStatement(sql);
