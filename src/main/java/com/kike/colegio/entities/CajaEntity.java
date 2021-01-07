@@ -17,11 +17,63 @@ public class CajaEntity {
 	private int id;
 
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "idmatricula")
+	@JoinColumn(name = "idmatricula", referencedColumnName= "id")
 	private MatriculacionesEntity matriculacion;
 
 	@Column(name = "importe")
 	private Double importe;
+	
+	//Constructores, Getters y setters 
+	
+	
+	public CajaEntity() {
+		super();
+	}
+	
+	
+	public CajaEntity(int id, MatriculacionesEntity matriculacion, Double importe) {
+		super();
+		this.id = id;
+		this.matriculacion = matriculacion;
+		this.importe = importe;
+	}
 
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public MatriculacionesEntity getMatriculacion() {
+		return matriculacion;
+	}
+
+
+	public void setMatriculacion(MatriculacionesEntity matriculacion) {
+		this.matriculacion = matriculacion;
+	}
+
+
+	public Double getImporte() {
+		return importe;
+	}
+
+
+	public void setImporte(Double importe) {
+		this.importe = importe;
+	}
+
+
+
+
+
+	
+	
+	
 
 }
