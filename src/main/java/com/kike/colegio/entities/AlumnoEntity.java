@@ -1,9 +1,14 @@
 package com.kike.colegio.entities;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
+
 
 @Entity
 @Table(name = "alumnos")
@@ -20,8 +25,24 @@ public class AlumnoEntity {
 	private int idMunicipio;
 
 	@Column(name = "familia_Numerosa")
-	private int famNumerosa;
-
+	private int famNumerosa;	
+	
+	@OneToMany(mappedBy = "asignaturas")
+	List<AsignaturasEntity> asignaturas;
+	
+	
+	//Constructores, Getters y setters 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public AlumnoEntity() {
 		super();
 	}
