@@ -38,17 +38,14 @@ public class AlumnoDAOImplJpa implements AlumnoDAO {
 		String jpql = " select new com.kike.colegio.dtos.AlumnoDTO (a.id, a.nombre, m.nombre, m.idMunicipio, a.famNumerosa)"
 				+ "FROM AlumnoEntity a, MunicipiosEntity m WHERE a.id = m.idMunicipio AND  CAST( a.id AS string )  LIKE :id AND a.nombre LIKE :nombre";
 
-		SessionFactory factory = DBUtils.creadorSessionFactory();
+	
 		EntityManagerFactory emf =  DBUtils.creadorEntityManagerFactory();
 		EntityManager em = emf.createEntityManager();
 		
 		em.getTransaction().begin();
 		javax.persistence.Query query = em.createQuery(jpql).setParameter("id", "%" + id + "%").setParameter("nombre", "%" + nombre + "%");
 		List<AlumnoDTO> lista = query.getResultList();
-	
-
-
-	    em.close();
+		em.close();
 
 
 		return lista;
@@ -57,19 +54,17 @@ public class AlumnoDAOImplJpa implements AlumnoDAO {
 	@Override
 	public Integer insertarAlumno(String id, String nombre, String idMunicipio, String famNumerosa) {
 
-		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(id),
+		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(idMunicipio),
 				Integer.parseInt(famNumerosa));
-		SessionFactory factory = DBUtils.creadorSessionFactory();
-		Session s = factory.getCurrentSession();
-		s.beginTransaction();
 		
-	
-		 Integer idPk = (Integer) s.save(a);
-
-
-		s.getTransaction().commit();
-
-		return idPk;
+		EntityManagerFactory emf =  DBUtils.creadorEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		
+		em.getTransaction().begin();
+		em.persist(a);
+		em.getTransaction().commit();
+		em.close();
+		return 0;
 	}
 
 	@Override

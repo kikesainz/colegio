@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
 
-    <persistence-unit name="colegio" transaction-type="RESOURCE_LOCAL">
-      
-        <!--Con esta entrada JPA nos escanea automáticamente las clases que tenemos anotadas-->       
+    <persistence-unit name="colegio" transaction-type="RESOURCE_LOCAL">    
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+           <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
 
         <properties>
 
