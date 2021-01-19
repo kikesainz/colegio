@@ -2,6 +2,8 @@ package com.kike.colegio.dao.implhib;
 
 import java.util.List;
 
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -50,7 +52,7 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 	@Override
 	public Integer insertarAlumno(String id, String nombre, String idMunicipio, String famNumerosa) {
 
-		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(id),
+		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(idMunicipio),
 				Integer.parseInt(famNumerosa));
 		SessionFactory factory = DBUtils.creadorSessionFactory();
 		Session s = factory.getCurrentSession();
