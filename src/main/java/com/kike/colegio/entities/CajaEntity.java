@@ -8,8 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
+
+
 @Entity
-@Table(name = "alumnos")
+@Table(name = "caja")
 public class CajaEntity {
 
 	@Id
@@ -22,6 +25,8 @@ public class CajaEntity {
 
 	@Column(name = "importe")
 	private Double importe;
+	
+	
 	
 	//Constructores, Getters y setters 
 	

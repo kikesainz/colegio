@@ -33,7 +33,7 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 	public List<AlumnoDTO> obtenerAlumnosporIdyNombre(String id, String nombre) {
 
 		String jpql = " select new com.kike.colegio.dtos.AlumnoDTO (a.id, a.nombre, m.nombre, m.idMunicipio, a.famNumerosa)"
-				+ "FROM AlumnoEntity a, MunicipiosEntity m WHERE a.id = m.idMunicipio AND  CAST( a.id AS string )  LIKE :id AND a.nombre LIKE :nombre";
+				+ "FROM AlumnoEntity a, MunicipiosEntity m WHERE a.idMunicipio = m.idMunicipio AND  CAST( a.id AS string )  LIKE :id AND a.nombre LIKE :nombre";
 
 		SessionFactory factory = DBUtils.creadorSessionFactory();
 		Session s = factory.getCurrentSession();
@@ -96,7 +96,9 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 		//Borra la entidad
 	    if (a != null) {
 	        s.delete(a);
+	        s.getTransaction().commit(); 
 	    	s.close();
+	    	
 	        return 1;
 	    }
 		s.close();

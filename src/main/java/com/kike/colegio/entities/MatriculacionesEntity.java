@@ -25,39 +25,42 @@ public class MatriculacionesEntity {
 	private int fecha;
 	
 	@Column(name = "activo")
-	private int activo;
+	private int activo;	
 	
-    @ManyToOne
+	
+	@ManyToOne
     @MapsId("id") //Nombre de la PK en la clase Alumno
     @JoinColumn(name = "id_alumno") //Nombre de la columna (tabla matriculaciones)
-    private AlumnoEntity alumno;
+    private AlumnoEntity alumnos;
 
     @ManyToOne
     @MapsId("id") //Nombre de la PK en la clase Alumno
     @JoinColumn(name = "id_asignatura") //Nombre de la columna (tabla matriculaciones)
-    private AsignaturasEntity asignatura;
+    private AsignaturasEntity asignaturas;
+
 
 
 	
 
-	
-	//Constructores, Getters y setters 
+  //Constructores, Getters y setters 
+
     
-	public MatriculacionesEntity() {
+    
+	public MatriculacionesEntity(int id, int fecha, int activo, AlumnoEntity alumnos, AsignaturasEntity asignaturas) {
 		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.activo = activo;
+		this.alumnos = alumnos;
+		this.asignaturas = asignaturas;
 	}
 
 
 
 
 
-	public MatriculacionesEntity(int id, int fecha, int activo, AlumnoEntity alumno, AsignaturasEntity asignatura) {
+	public MatriculacionesEntity() {
 		super();
-		this.id = id;
-		this.fecha = fecha;
-		this.activo = activo;
-		this.alumno = alumno;
-		this.asignatura = asignatura;
 	}
 
 
@@ -112,34 +115,36 @@ public class MatriculacionesEntity {
 
 
 
-	public AlumnoEntity getAlumno() {
-		return alumno;
+	public AlumnoEntity getAlumnos() {
+		return alumnos;
 	}
 
 
 
 
 
-	public void setAlumno(AlumnoEntity alumno) {
-		this.alumno = alumno;
+	public void setAlumnos(AlumnoEntity alumnos) {
+		this.alumnos = alumnos;
 	}
 
 
 
 
 
-	public AsignaturasEntity getAsignatura() {
-		return asignatura;
+	public AsignaturasEntity getAsignaturas() {
+		return asignaturas;
 	}
 
 
 
 
 
-	public void setAsignatura(AsignaturasEntity asignatura) {
-		this.asignatura = asignatura;
-	}  
-	
-	
-	
+	public void setAsignaturas(AsignaturasEntity asignaturas) {
+		this.asignaturas = asignaturas;
+	}
+
+
+
+
+
 }

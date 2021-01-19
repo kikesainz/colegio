@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 
 
+
 @Entity
 @Table(name = "alumnos")
 public class AlumnoEntity {
@@ -28,11 +29,10 @@ public class AlumnoEntity {
 	private int famNumerosa;	
 	
 	@OneToMany(mappedBy = "asignaturas")
-	List<AsignaturasEntity> asignaturas;
+	List<MatriculacionesEntity> matriculaciones;
 	
 	
-	//Constructores, Getters y setters 
-	
+	//Constructores, Getters y setters 	
 	
 	
 	
