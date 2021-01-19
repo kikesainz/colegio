@@ -50,7 +50,7 @@ public class AlumnoDAOImplHib implements AlumnoDAO {
 	@Override
 	public Integer insertarAlumno(String id, String nombre, String idMunicipio, String famNumerosa) {
 
-		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(id),
+		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(id), nombre, Integer.parseInt(idMunicipio),
 				Integer.parseInt(famNumerosa));
 		SessionFactory factory = DBUtils.creadorSessionFactory();
 		Session s = factory.getCurrentSession();
