@@ -29,78 +29,76 @@ public class AsignaturasEntity {
 	
 
 	@OneToMany(mappedBy = "alumnos")
-	List<AlumnoEntity> alumnos;
+	List<MatriculacionesEntity> matriculaciones;
 
-	
 	//Constructores, Getters y setters
 	
 	
 	
-	public AsignaturasEntity(int id, String nombreAsignatura, int curso, Double tasa, List<AlumnoEntity> alumnos) {
+	
+	
+	
+	
+	
+	
+	
+	public AsignaturasEntity() {
+		super();
+	}
+
+	public AsignaturasEntity(int id, String nombreAsignatura, int curso, Double tasa,
+			List<MatriculacionesEntity> matriculaciones) {
 		super();
 		this.id = id;
 		this.nombreAsignatura = nombreAsignatura;
 		this.curso = curso;
 		this.tasa = tasa;
-		this.alumnos = alumnos;
-	}
-	
-	public AsignaturasEntity() {
-		super();
+		this.matriculaciones = matriculaciones;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-
-
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getNombreAsignatura() {
 		return nombreAsignatura;
 	}
 
-
 	public void setNombreAsignatura(String nombreAsignatura) {
 		this.nombreAsignatura = nombreAsignatura;
 	}
-
 
 	public int getCurso() {
 		return curso;
 	}
 
-
 	public void setCurso(int curso) {
 		this.curso = curso;
 	}
-
 
 	public Double getTasa() {
 		return tasa;
 	}
 
-
 	public void setTasa(Double tasa) {
 		this.tasa = tasa;
 	}
 
-
-	public List<AlumnoEntity> getAlumnos() {
-		return alumnos;
+	public List<MatriculacionesEntity> getMatriculaciones() {
+		return matriculaciones;
 	}
 
-
-	public void setAlumnos(List<AlumnoEntity> alumnos) {
-		this.alumnos = alumnos;
+	public void setMatriculaciones(List<MatriculacionesEntity> matriculaciones) {
+		this.matriculaciones = matriculaciones;
 	}
 
+	
+	
+	
 
 	
 	

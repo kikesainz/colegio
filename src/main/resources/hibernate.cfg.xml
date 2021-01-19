@@ -28,7 +28,9 @@
 		
 			<mapping class="com.kike.colegio.entities.AlumnoEntity"/>
 			<mapping class="com.kike.colegio.entities.MunicipiosEntity"/>
- 
+			<mapping class="com.kike.colegio.entities.AsignaturasEntity"/>
+			<mapping class="com.kike.colegio.entities.CajaEntity"/>
+			<mapping class="com.kike.colegio.entities.MatriculacionesEntity"/>
     </session-factory>
 
 </hibernate-configuration>
