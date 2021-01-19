@@ -63,8 +63,10 @@ public class AlumnoDAOImplJpa implements AlumnoDAO {
 		em.getTransaction().begin();
 		em.persist(a);
 		em.getTransaction().commit();
+
 		em.close();
-		return 0;
+		//Obtenemos el valor de la PK insertada para devolverlo
+		return (Integer) emf.getPersistenceUnitUtil().getIdentifier(a);
 	}
 
 	@Override
@@ -73,15 +75,22 @@ public class AlumnoDAOImplJpa implements AlumnoDAO {
 		//Conversión famNumerosa a Integer (0 o 1), ya que viene a "on" o null
 		Integer familiaNumerosa = 	(famNumerosa == null) ? 0 : 1;
 		
-		AlumnoEntity a = new AlumnoEntity(Integer.parseInt(idNew), nombre, Integer.parseInt(idMunicipio),
-				familiaNumerosa);
 		
-		SessionFactory factory = DBUtils.creadorSessionFactory();
-		Session s = factory.getCurrentSession();
+		EntityManagerFactory emf =  DBUtils.creadorEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
 		
-		s.beginTransaction();
-		s.update(a);
-		s.getTransaction().commit();
+		em.getTransaction().begin();
+		//Recuperamos la entidad a actualizar
+		AlumnoEntity a = em.find(AlumnoEntity.class, Integer.parseInt(idOld));		
+		//Actualizamos sus valores con los nuevos
+		a.setId(Integer.parseInt(idNew));
+		a.setNombre(nombre);
+		a.setIdMunicipio(Integer.parseInt(idNew));
+		a.setIdMunicipio(Integer.parseInt(idMunicipio));
+		
+		//La entidad es automáticamente actualizada cuando se hace commit
+        em.getTransaction().commit();
+        em.close();
 
 		return a.getId();
 	}
@@ -89,19 +98,17 @@ public class AlumnoDAOImplJpa implements AlumnoDAO {
 	@Override
 	public Integer borrarAlumno(String id) {
 		
-		SessionFactory factory = DBUtils.creadorSessionFactory();
-		Session s = factory.getCurrentSession();
+		EntityManagerFactory emf =  DBUtils.creadorEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
 		
-		s.beginTransaction();
-		//Hibernate recupera la Entidad a borrar
-		AlumnoEntity a = s.get(AlumnoEntity.class, Integer.parseInt(id));
-		//Borra la entidad
-	    if (a != null) {
-	        s.delete(a);
-	    	s.close();
-	        return 1;
-	    }
-		s.close();
+		em.getTransaction().begin();
+		//Recuperamos la entidad a borrar
+		AlumnoEntity a = em.find(AlumnoEntity.class, Integer.parseInt(id));		
+		if (a !=null) {
+	        em.remove(a);
+	        em.getTransaction().commit();
+		}       
+        em.close();
 	    return 0;
 	    
 		/** Forma alternativa de llevar a cabo el delete con HQL */
