@@ -40,7 +40,7 @@ public class InsertarAlumnosController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1-Recuperar de la BBDD todos los municipios y meterlos en una lista
 		
-		ComboUtils.recuperacionComboMunicipios(request);	
+		ComboUtils.recuperacionComboMunicipiosHib(request);
 		
 		RequestDispatcher d = getServletContext().getRequestDispatcher("/WEB-INF/vistas/alumnos/insertarAlumnos.jsp");
 		d.forward(request, response);

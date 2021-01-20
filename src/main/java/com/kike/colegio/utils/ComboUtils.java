@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.kike.colegio.dao.CombosDAO;
 import com.kike.colegio.dao.impl.CombosDAOImpl;
+import com.kike.colegio.dao.implhib.CombosDAOImplHib;
 import com.kike.colegio.dtos.ComboDTO;
 
 public class ComboUtils {
@@ -16,6 +17,13 @@ public class ComboUtils {
 		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
 		request.setAttribute("comboMunicipios", listaMunicipios);
 	}
+	
+	public static void recuperacionComboMunicipiosHib(HttpServletRequest request) {
+		CombosDAO comboMunicipio = new CombosDAOImplHib();
+		List<ComboDTO> listaMunicipios = comboMunicipio.comboMunicipios();
+		request.setAttribute("comboMunicipios", listaMunicipios);
+	}
+	
 	
 	
 	public static void recuperarComboAlumnos(HttpServletRequest request) {	
