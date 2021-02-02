@@ -1,6 +1,8 @@
 package com.kike.colegio.entities;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,27 +18,23 @@ import javax.persistence.Table;
 public class MatriculacionesEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
-
-
+	private Integer id;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "id_asignatura")
+	private AsignaturasEntity asignaturas;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "id_alumno")
+	private AlumnoEntity alumnos;
+	
 	@Column(name = "fecha")
-	private int fecha;
+	private String fecha;
 	
 	@Column(name = "activo")
-	private int activo;	
-	
-	
-	@ManyToOne
-    @MapsId("id") //Nombre de la PK en la clase Alumno
-    @JoinColumn(name = "id_alumno") //Nombre de la columna (tabla matriculaciones)
-    private AlumnoEntity alumnos;
-
-    @ManyToOne
-    @MapsId("id") //Nombre de la PK en la clase Alumno
-    @JoinColumn(name = "id_asignatura") //Nombre de la columna (tabla matriculaciones)
-    private AsignaturasEntity asignaturas;
+	private Integer activo;
 
 
 
